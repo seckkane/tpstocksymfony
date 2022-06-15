@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<title>{% block title %} Accueil {%endblock%} </title>
+<link rel="stylesheet" type="text/css" href="{{asset('css/styles.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}"/>
+
+
+
+</head>
+<body>
+
+<ul>
+    <h2 style="color: white;text-align: center;">Tableau de Bord</h2>
+  <li><a class="active" href="{{ path('logon')}}">Home</a></li>
+  {% if is_granted('ROLE_GESTION_STOCK') %}
+      <li><a href="{{ path('produit_liste')}}">Gestion des produits</a></li>
+      <li><a href="{{ path('categorie_liste')}}">Gestion des Catégories</a></li>
+      <li><a href="{{ path('entree_liste')}}">Gestion des Entrees</a></li>
+  {% endif %}
+  
+  {% if is_granted('ROLE_VENDEUR') %}
+      <li><a href="{{ path('sortie_liste')}}">Gestion des Sorties</a></li>
+  {% endif %}
+</ul>
+
+<a href="{{ path('app_logout')}}" style="float: right; margin-top: 30px;margin-right: 2%;">Deconnexion</a>
+<a href="#" style="float: right; margin-top: 30px;margin-right: 2%; background-color: lightsalmon; color: white;">       Generate Rapport </a>
+
+<div style="margin-left:20%;padding:1px 16px;height:1000px;">
+
+      <input type="submit" class="btn btn-warning form-group" style="margin-top:20px;" name="rechercher" value="Rechercher">
+      <input type="text" name="search" style="margin-top:10px;" class="form-control form-group">   
+
+  <div style="background-color:whitesmoke;height:450px;padding:20px;margin-top:10px;">
+    <h1 style="color:black;">Dashboard</h1>
+    
+
+      {% block body %}
+          <img class = "home" src="{{asset('images/index.jpg')}}" alt="Images d'accueil" />
+      {% endblock %}
+
+  </div>
+
+</div>
+
+</body>
+</html>

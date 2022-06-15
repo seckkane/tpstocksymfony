@@ -1,0 +1,45 @@
+{% extends 'accueil.html.twig' %}
+
+
+{% block title %}Gestion des Catégories{% endblock %}
+
+{% block body %}
+     
+            <div class="panel panel-warning col-md-6" style="overflow:scroll; height:355px;">
+                <div class="panel-heading">Liste Des Categories</div>
+                <div class="panel-body">
+
+                    <table class="table table-striped">
+                        <tr style="color:lightsalmon;"> 
+                            <th>Id</th>
+                            <th>Code</th>
+                            <th>Désgnation</th>
+                            <th style="text-align:center;">Modifier</th>
+                            
+                        </tr>
+                        {% for cat in categories %}
+                            <tr>
+                                <td>{{ cat.id }} </td>
+                                <td>{{ cat.codeCateg }}</td>
+                                <td>{{ cat.libeleCateg }}</td>
+
+                                 <td style="text-align:center;"><a href="{{ path('categorie_edit',{'id':cat.id})}}">
+                                    <img class = "prod" src="{{asset('images/modif.png')}}" alt="Images d'accueil" />
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    
+                </div>
+            </div>
+
+            <div class="panel panel-warning col-md-6">
+                <div class="panel-heading">Formulaire de gestion Des Catégories</div>
+                <div class="panel-body">
+
+                    {{ form(form)}}
+                    
+                </div>
+            </div>
+
+{% endblock %}

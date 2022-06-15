@@ -1,0 +1,39 @@
+{% extends 'accueil.html.twig' %}
+
+{% block title %}Gestion des Entrees{% endblock %}
+
+{% block body %}
+
+    <div class="panel panel-warning col-md-6" style="overflow:scroll;height:355px;">
+                <div class="panel-heading">Liste Des Achats</div>
+                <div class="panel-body">
+
+                    <table class="table table-striped">
+                        <tr style="color:lightsalmon;"> 
+                            <th>Identifiant</th>
+                            <th>Date</th>
+                            <th>Acheté</th>
+                            <th>Produit</th>
+                        </tr>
+                        {% for e in entrees %}
+                            <tr>
+                                <td>{{ e.id }}</td>
+                                <td>{{ e.dateE|date('d/m/y') }}</td>
+                                <td>{{ e.qtE }}</td>
+                                <td>{{ e.produit }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                    
+                </div>
+            </div>
+
+            <div class="panel panel-warning col-md-6">
+                <div class="panel-heading">Formulaire de gestion Des Achats</div>
+                <div class="panel-body">
+
+                    {{ form(form)}}
+                    
+                </div>
+            </div>
+{% endblock %}
